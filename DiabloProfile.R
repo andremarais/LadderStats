@@ -7,7 +7,7 @@
 HeroIDs <- function(BTN, class){
 
 #download profile data----
-url <- paste("eu.battle.net/api/d3/profile/" , BTN, "/", sep = "")
+url <- paste("eu.battle.net/api/d3/profile/" , BTN, "/?locale=en_GB&apikey=mnazmcekrbgx4knstqynhacjf4zcmvh5", sep = "")
 diablo <- httpGET(url,curl = getCurlHandle())
 
 doc <- htmlParse(diablo, asText=TRUE)
@@ -51,8 +51,8 @@ hhardcore <- gsub(",", "", hhardcore)
 herolist <- data.frame(cbind(hname, hid,hlevel,hclass,hhardcore))
 #herolist$hid <- levels(droplevels(herolist$hid))
 
-validheroes <- herolist[which(herolist$hclass == class & herolist$hlevel == 70  & herolist$hhardcore == "false" ),]
-validheroes$hid
+validheroes <- herolist[which(herolist$hclass == class & herolist$hhardcore == "false" ),]
+validheroes$hid[1]
 
-return(validheroes$hid)
+return(validheroes$hid[1])
 }

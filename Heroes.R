@@ -3,17 +3,21 @@ herospells <- function(BTN, ID) {
 herostats <- data.frame(matrix(NA))
 
 #download profile data----
-url <- paste("http://EU.battle.net/api/d3/profile/" , BTN, "/hero/",ID , sep = "")
+url <- paste("http://EU.battle.net/api/d3/profile/" , BTN, "/hero/",ID ,"?locale=en_GB&apikey=mnazmcekrbgx4knstqynhacjf4zcmvh5", sep = "")
 hero <- httpGET(url,curl = getCurlHandle())
 
 
 doc <- htmlParse(hero, asText=TRUE)
 plain.text <- xpathSApply(doc, "//p", xmlValue)
 hero<-capture.output(cat(paste(plain.text, collapse = "\n")))
+#  \"items\" : {
+
+#  \\\"items\\\" : {
+
 
 #last stats is where (not the) gold is
 s <- grep("skills\\\" : \\{", hero)
-e <- grep("\\\"head\\\" : \\{", hero)
+e <- grep("  \\\"items\\\" : \\{", hero)[1]
 
 #elites <- hero.subset[grep("elites\\\" :", hero.subset )]
 hero.subset  <- hero[s:e]
