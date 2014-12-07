@@ -25,5 +25,7 @@ output$RankSlide <- renderUI({
               max = 1000,
               value = c(1,100))
 
+  
+  
 })
 

@@ -2,9 +2,12 @@ pkgs <- c("ggplot2" ,"png")
 pkgs <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
 if(length(pkgs)) install.packages(pkgs,repos="http://cran.cs.wwu.edu/")
 require(ggplot2); require(png); 
+source("external/plot1.R", local = T )
 
 shinyUI(
+  
   fluidPage(
+    theme = "blackorange.css",
     sidebarLayout(
       sidebarPanel(
         uiOutput("ClassSelect"),
@@ -15,7 +18,7 @@ shinyUI(
         ),
       mainPanel(
         uiOutput("Banner"),
-        uiOutput("Plot1"),
+        uiOutput("PlotC"),
         uiOutput("Texttest")
     )
   )
