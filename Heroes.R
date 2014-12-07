@@ -1,5 +1,6 @@
 
 herospells <- function(BTN, ID) {
+  if (ID == "No such hero for this account") return(matrix(nrow = 10, ncol = 2, NA))
 herostats <- data.frame(matrix(NA))
 
 #download profile data----
@@ -17,9 +18,12 @@ hero<-capture.output(cat(paste(plain.text, collapse = "\n")))
 
 #last stats is where (not the) gold is
 s <- grep("skills\\\" : \\{", hero)
+
+
 e <- grep("  \\\"items\\\" : \\{", hero)[1]
 
 #elites <- hero.subset[grep("elites\\\" :", hero.subset )]
+
 hero.subset  <- hero[s:e]
 
 

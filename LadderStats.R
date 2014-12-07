@@ -4,11 +4,10 @@ pkgs <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
 if(length(pkgs)) install.packages(pkgs,repos="http://cran.cs.wwu.edu/")
 library(RCurl); library(XML); library(ggplot2);
 
-fastbind.ith.rows <- function(i) rbindlist(lapply(sample.list, "[", i, TRUE))
 
 
 #how many profiles
-prof <- 999
+
 
 urlB <- "http://eu.battle.net/d3/en/rankings/era/1/rift-barbarian"
 urlC <- "http://eu.battle.net/d3/en/rankings/era/1/rift-crusader"
@@ -64,8 +63,8 @@ colnames(profilenames) <- c("barbarian", "crusader", "demon-hunter", "monk", "wi
 
 spells <- list()
 jspell <- data.frame()
-i<-247
-for (i in 1:1000){
+
+for (i in 350:999){
 
     b <- herospells(profilenames[i,1],HeroIDs(profilenames[i,1], colnames(profilenames)[1])[1])
     c <- herospells(profilenames[i,2],HeroIDs(profilenames[i,2], colnames(profilenames)[2])[1])
@@ -75,46 +74,59 @@ for (i in 1:1000){
     w <- herospells(profilenames[i,6],HeroIDs(profilenames[i,6], colnames(profilenames)[6])[[1]])
 
   spells[[i]] <- cbind(b,c,dh,m,wd,w)
+  print(i)
 }
 
+getwd()
+setwd("c:/Diablo")
+
+write.csv(spells, file = "spells.csv")
 # barbarian spells
 bspells <- matrix(NA)
 b <- lapply(spells, `[`,  c(1,2))
 bspells <- b[[1]]
 for(i in 2:length(spells)) bspells <- rbind(bspells,b[[i]])
+write.csv(bspells, file = "barb.csv")
 
 # crusaders spells
 cspells <- matrix(NA)
 c <- lapply(spells, `[`,  c(3,4))
 cspells <- c[[1]]
 for(i in 2:length(spells)) cspells <- rbind(cspells,c[[i]])
+write.csv(cspells, file = "crusader.csv")
 
 # Demom-Hunter spells
 dhspells <- matrix(NA)
 dh <- lapply(spells, `[`,  c(5,6))
 dhspells <- dh[[1]]
 for(i in 2:length(spells)) dhspells <- rbind(dhspells,dh[[i]])
+write.csv(dhspells, file = "dh.csv")
+
 
 # Monk Spells
 mspells <- matrix(NA)
 m <- lapply(spells, `[`,  c(7,8))
 mspells <- m[[1]]
 for(i in 2:length(spells)) mspells <- rbind(mspells,m[[i]])
+write.csv(mspells, file = "monk.csv")
 
 # Witch Doctor spells
 wdspells <- matrix(NA)
 wd <- lapply(spells, `[`,  c(9,10))
 wdspells <- wd[[1]]
 for(i in 2:length(spells)) wdspells <- rbind(wdspells,wd[[i]])
+write.csv(wdspells, file = "wd.csv")
 
 # Wizard spells
 wspells <- matrix(NA)
 w <- lapply(spells, `[`,  c(11,12))
 wspells <- w[[1]]
 for(i in 2:length(spells)) wspells <- rbind(wspells,w[[i]])
+write.csv(wspells, file = "wizard.csv")
 
 
 
 
 
-
+getwd()
+read.csv("spells.csv")

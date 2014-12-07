@@ -50,9 +50,10 @@ hhardcore <- gsub(",", "", hhardcore)
 
 herolist <- data.frame(cbind(hname, hid,hlevel,hclass,hhardcore))
 #herolist$hid <- levels(droplevels(herolist$hid))
-
+nrow(herolist)
 validheroes <- herolist[which(herolist$hclass == class & herolist$hhardcore == "false" ),]
-validheroes$hid[1]
+nrow(validheroes)
 
-return(validheroes$hid[1])
+if (nrow(validheroes) == 0) return("No such hero for this account")
+if (nrow(validheroes) > 0) return(validheroes$hid[1])
 }
