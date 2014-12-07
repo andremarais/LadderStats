@@ -1,6 +1,18 @@
+source("external/plot1.R", local = T )$value
+
 output$Banner <- renderUI({
   img(src=paste("banners/",input$ClassSelect,".png", sep= ""), height=100, width = 640)
+})
+
+output$Plot1 <- renderUI({
+  plotOutput(plot1(1,100,"Monk"))
+
+
+ 
   
 })
 
-#  img(src=paste("crest/",input$ClassSelect,".png", sep= ""), height = 200, width = 200)
+output$Texttest <- renderUI({
+  p(input$RankSlide[2])
+  
+})
