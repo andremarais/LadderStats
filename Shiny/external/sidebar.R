@@ -9,7 +9,6 @@ output$ClassSelect <- renderUI({
                              "Witch Doctor"= "WitchDoctor",
                              "Wizard"),
               selected = "Barbarian")
-
 })
 
 # Crest for selected Class
@@ -20,12 +19,18 @@ output$ClassCrest <- renderUI({
 # Slider inout for GR range
 output$RankSlide <- renderUI({
   sliderInput("RankSlide",
-              label = h5("Rank Range"),
+              label = h5("Greater Rift Rank Range"),
               min = 1,
               max = 1000,
               value = c(1,100))
-
-  
-  
 })
 
+output$Runes <- renderUI({
+
+  selectInput("Runes",
+              label = "Runes",
+              choices = list("A", "B"),
+              selected = "A",
+              multiple = T
+              )
+})

@@ -8,19 +8,22 @@ shinyUI(
   
   fluidPage(
     theme = "blackorange.css",
+    
     sidebarLayout(
       sidebarPanel(
         uiOutput("ClassSelect"),
         wellPanel(
           uiOutput("ClassCrest"),
-          uiOutput("RankSlide")
+          uiOutput("RankSlide"),
+
+          uiOutput("Runes")
           )
         ),
       mainPanel(
         uiOutput("Banner"),
-        uiOutput("PlotC"),
-        uiOutput("Texttest")
+        plotOutput("PlotC")
     )
   )
 )
 )
+
