@@ -23,6 +23,7 @@ monk <- httpGET(urlM,curl = getCurlHandle())
 wd <- httpGET(urlWD,curl = getCurlHandle())
 wizard <- httpGET(urlW,curl = getCurlHandle())
 
+
 classlist <- c(barbarian, crusader, dh, monk, wd, wizard)
 
 heroplace <- data.frame(matrix(NA))
@@ -41,7 +42,6 @@ for (j in 1:6) {
     heroplace[i,j] <- as.integer(gregexpr(paste(">\n",i,"\\.", sep= ""), substring(classlist[j], heroplace[i-1,j], nchar(classlist[j])))) + heroplace[i-1,j] -1
   }
 }
-
 
 
 profilenames <- data.frame(matrix(NA))
@@ -64,7 +64,7 @@ colnames(profilenames) <- c("barbarian", "crusader", "demon-hunter", "monk", "wi
 spells <- list()
 jspell <- data.frame()
 
-for (i in 350:999){
+for (i in 1:999){
 
     b <- herospells(profilenames[i,1],HeroIDs(profilenames[i,1], colnames(profilenames)[1])[1])
     c <- herospells(profilenames[i,2],HeroIDs(profilenames[i,2], colnames(profilenames)[2])[1])
@@ -127,6 +127,3 @@ write.csv(wspells, file = "wizard.csv")
 
 
 
-
-getwd()
-read.csv("spells.csv")

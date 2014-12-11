@@ -1,6 +1,9 @@
 
 herospells <- function(BTN, ID) {
-  if (ID == "No such hero for this account") return(matrix(nrow = 10, ncol = 2, NA))
+  if (ID == "No such hero for this account") {
+    NaMatrix <- matrix(nrow = 10, ncol = 2, NA)
+    colnames(NaMatrix) <- c("Spell", "Rune")
+    return(NaMatrix)}
 herostats <- data.frame(matrix(NA))
 
 #download profile data----

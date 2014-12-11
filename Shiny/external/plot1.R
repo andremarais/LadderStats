@@ -1,4 +1,5 @@
-bscv <- read.csv(paste("external/data/Barbarian.csv", sep=""))
+#C:/Users/Veldrin/Documents/GitHub/LadderStats/Shiny/external/data
+bscv <- read.csv(paste("C:/Users/Veldrin/Documents/GitHub/LadderStats/Shiny/external/data/Barbarian.csv", sep=""))
 cscv <- read.csv(paste("external/data/Crusader.csv", sep=""))
 dhscv <- read.csv(paste("external/data/DemonHunter.csv", sep=""))
 mscv <- read.csv(paste("external/data/Monk.csv", sep=""))
@@ -30,7 +31,7 @@ t$Var1 <- NULL
 colnames(t) <- (c("Spell", "Count"))
 t$Count <- as.integer(t$Count)
 t <- t[order(t$Count, decreasing = T),]
-t <- t[1:25,]
+t <- t[1:15,]
 
 p1 <- ggplot(t, aes(x=reorder(Spell, -Count), y= Count))+ 
   geom_bar(stat = "identity", fill = bcol, col = "black")+

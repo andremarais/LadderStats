@@ -21,7 +21,11 @@ shinyUI(
         ),
       mainPanel(
         uiOutput("Banner"),
-        plotOutput("PlotC")
+        plotOutput("PlotC"),
+
+        p(h4("Runes")),
+
+        plotOutput("PlotR")
     )
   )
 )

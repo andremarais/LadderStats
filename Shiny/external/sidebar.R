@@ -27,10 +27,13 @@ output$RankSlide <- renderUI({
 
 output$Runes <- renderUI({
 
-  selectInput("Runes",
+  selectizeInput("Runes",
               label = "Runes",
-              choices = list("A", "B"),
-              selected = "A",
-              multiple = T
+              choices = array(runes(input$RankSlide[1],input$RankSlide[2],input$ClassSelect)[,1]),
+              selected = array(runes(input$RankSlide[1],input$RankSlide[2],input$ClassSelect)[c(1:4),1]),
+              multiple = T,
+              options = list(maxItems = 4)
               )
+  
+
 })
