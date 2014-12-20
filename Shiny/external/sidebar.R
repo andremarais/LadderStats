@@ -32,7 +32,7 @@ output$Runes <- renderUI({
               choices = array(runes(input$RankSlide[1],input$RankSlide[2],input$ClassSelect)[,1]),
               selected = array(runes(input$RankSlide[1],input$RankSlide[2],input$ClassSelect)[c(1:4),1]),
               multiple = T,
-              options = list(maxItems = 4)
+              options = list(maxItems = 3)
               )
   
 

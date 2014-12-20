@@ -69,7 +69,7 @@ runes <- function(GRF, GRT, Class){
 
 
 ### Rune Graph Function
-runeplot <- function(RuneSample, Class) ({
+runeplot <- function(RuneSample, Class = "Barbarian", GRF, GRT) ({
   
   if(Class == "Barbarian") {
     BData <- bscv
@@ -87,6 +87,7 @@ runeplot <- function(RuneSample, Class) ({
 
   runes <- list(list())
   plots <- list()
+  BData <- BData[c(GRF:(GRT*10)),]
   
   for (i in 1:length(RuneSample)) {
     
@@ -122,9 +123,9 @@ runeplot <- function(RuneSample, Class) ({
   
   
 if (length(RuneSample) == 1) mp <- multiplot(plots[[1]], cols = 1)
-else if (length(RuneSample) == 2) mp <- multiplot(plots[[1]], plot[[2]], cols = 1)
-else if (length(RuneSample) == 3) mp <- multiplot(plots[[1]], plot[[2]], plot[[3]], cols = 1)
-else if (length(RuneSample) == 4) mp <- multiplot(plots[[1]], plot[[2]], plot[[3]], plot[[4]], cols = 1)
+if (length(RuneSample) == 2) mp <- multiplot(plots[[1]], plots[[2]], cols = 1)
+if (length(RuneSample) == 3) mp <- multiplot(plots[[1]], plots[[2]], plots[[3]], cols = 1)
+if (length(RuneSample) == 4) mp <- multiplot(plots[[1]], plots[[2]], plots[[3]], plots[[4]], cols = 1)
 
   
   return(mp)
