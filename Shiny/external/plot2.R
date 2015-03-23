@@ -37,18 +37,20 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
 runes <- function(GRF, GRT, Class){
   if(Class == "Barbarian") {
-    BData <- bscv
+    if (input$hardcorecb  == F) BData <- bscv else BData <- bscvHC
   } else if(Class == "Crusader") {
-    BData <- cscv
+    if (input$hardcorecb  == F) BData <- cscv else BData <- cscvHC
   } else if(Class == "DemonHunter") {
-    BData <- dhscv
+    bcol ="#B058AE"; if (input$hardcorecb  == F) BData <- dhscv else BData <- dhscvHC
   } else if(Class == "Monk") {
-    BData <- mscv
+    bcol ="#E3DE54"; if (input$hardcorecb  == F) BData <- mscv else BData <- mscvHC
   } else if(Class == "WitchDoctor") {
-    BData <- wdscv
+    bcol ="#279423"; if (input$hardcorecb  == F) BData <- wdscv else BData <- wdscvHC
   } else if(Class == "Wizard") {
-    BData <- wscv
+    bcol ="#3BDCF5"; if (input$hardcorecb  == F) BData <- wscv else BData <- wscvHC
   }
+  
+  
   
   BData.subset <- BData[c(GRF:(GRT*10)),]
   BData.subset.active <- BData.subset[which(BData.subset$Rune != "Passive"),]

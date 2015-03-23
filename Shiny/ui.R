@@ -12,6 +12,7 @@ shinyUI(
     sidebarLayout(
       sidebarPanel(
         uiOutput("ClassSelect"),
+        checkboxInput("hardcorecb", label = "Hardcore" , value = F),
         wellPanel(
           uiOutput("ClassCrest"),
           uiOutput("RankSlide"),

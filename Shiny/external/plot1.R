@@ -1,10 +1,17 @@
 
-bscv <- read.csv(paste("external/data/Barbarian.csv", sep=""))
-cscv <- read.csv(paste("external/data/Crusader.csv", sep=""))
-dhscv <- read.csv(paste("external/data/DemonHunter.csv", sep=""))
-mscv <- read.csv(paste("external/data/Monk.csv", sep=""))
-wdscv <- read.csv(paste("external/data/WitchDoctor.csv", sep=""))
-wscv <- read.csv(paste("external/data/Wizard.csv", sep=""))
+bscv <- read.csv(paste("external/data/barb.csv", sep=""))
+cscv <- read.csv(paste("external/data/crusader.csv", sep=""))
+dhscv <- read.csv(paste("external/data/dh.csv", sep=""))
+mscv <- read.csv(paste("external/data/monk.csv", sep=""))
+wdscv <- read.csv(paste("external/data/wd.csv", sep=""))
+wscv <- read.csv(paste("external/data/wizard.csv", sep=""))
+
+bscvHC <- read.csv(paste("external/data/barbHC.csv", sep=""))
+cscvHC <- read.csv(paste("external/data/crusaderHC.csv", sep=""))
+dhscvHC <- read.csv(paste("external/data/dhHC.csv", sep=""))
+mscvHC <- read.csv(paste("external/data/monkHC.csv", sep=""))
+wdscvHC <- read.csv(paste("external/data/wdHC.csv", sep=""))
+wscvHC <- read.csv(paste("external/data/wizardHC.csv", sep=""))
 
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   require(grid)
@@ -46,17 +53,17 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 plot1 <- function(GRF, GRT, Class = "Barbarian"){
   
 if(Class == "Barbarian") {
-  bcol ="#DB3232"; BData <- bscv
+  bcol ="#DB3232"; if (input$hardcorecb  == F) BData <- bscv else BData <- bscvHC
   } else if(Class == "Crusader") {
-    bcol ="#F2EEB1"; BData <- cscv
+    bcol ="#F2EEB1"; if (input$hardcorecb  == F) BData <- cscv else BData <- cscvHC
   } else if(Class == "DemonHunter") {
-    bcol ="#B058AE"; BData <- dhscv
+    bcol ="#B058AE"; if (input$hardcorecb  == F) BData <- dhscv else BData <- dhscvHC
   } else if(Class == "Monk") {
-    bcol ="#E3DE54"; BData <- mscv
+    bcol ="#E3DE54"; if (input$hardcorecb  == F) BData <- mscv else BData <- mscvHC
   } else if(Class == "WitchDoctor") {
-    bcol ="#279423"; BData <- wdscv
+    bcol ="#279423"; if (input$hardcorecb  == F) BData <- wdscv else BData <- wdscvHC
   } else if(Class == "Wizard") {
-    ;bcol ="#3BDCF5"; BData <- wscv
+    ;bcol ="#3BDCF5"; if (input$hardcorecb  == F) BData <- wscv else BData <- wscvHC
   }
 
 BData.subset <- BData[c(GRF:(GRT*10)),]
